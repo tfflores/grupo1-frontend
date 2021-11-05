@@ -13,6 +13,7 @@ const useStyles = makeStyles({
 
 export default function Requests() {
     const classes = useStyles();
+    // [{"_id": "4af9f23d8ead0e1d32000000", "usedSpace": 100,"totalSpace": "10000", "recepcion": false, "despacho": false, "pulmon": false, "cocina": false, "grupo": 1}, {}]
     const [storage, setStorage] = useState([]);
     // '6167752d51533a0004922313': {_id: '10', total: 48}
     const [stockStore, setStockStore] = useState({});

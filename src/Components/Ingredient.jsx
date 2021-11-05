@@ -17,7 +17,7 @@ export default function Ingredient ({ stocks }) {
             };
 
     return (
-        <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '20px'}}>Ingredientes</ListSubheader>}>
+        <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '17px'}}>Ingredientes</ListSubheader>}>
             {stocks?.map((ing, index) => 
                 <ListItem key={index}>
                     <ListItemText primary={`${skus[ing._id]}: ${ing.total}`}/>
