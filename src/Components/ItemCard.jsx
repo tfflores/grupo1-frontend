@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Ingredient from './Ingredient';
 
 import Card from '@mui/material/Card';
@@ -11,13 +11,28 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 const useStyles = makeStyles({
     card: {
-        minHeight: '55vh',
+        minHeight: '50vh',
     }
 });
 
-export default function ItemCard({ store, stock_store }) {
+export default function ItemCard({ store }) {
     const classes = useStyles();
-    const stockStore = stock_store;
+    const [stockStore, setStockStore] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
+            .then(res => res.json())
+            .then(data => {
+                setLoading(true);
+                setStockStore(stockStore => ({...stockStore, [store._id]: data}));
+            })
+            .catch(err => {
+                setError({ errorMessage: err.toString() });
+                console.log(error);
+            });
+    });
 
     return (
         <>
@@ -35,7 +50,7 @@ export default function ItemCard({ store, stock_store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    {loading && <Ingredient stocks={stockStore[store._id]} />}
                 </CardContent>
             </Card>
             }
@@ -53,7 +68,7 @@ export default function ItemCard({ store, stock_store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    {loading && <Ingredient stocks={stockStore[store._id]} />}
                 </CardContent>
             </Card>
             }
@@ -71,7 +86,7 @@ export default function ItemCard({ store, stock_store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    {loading && <Ingredient stocks={stockStore[store._id]} />}
                 </CardContent>
             </Card>
             }
@@ -89,7 +104,7 @@ export default function ItemCard({ store, stock_store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    {loading && <Ingredient stocks={stockStore[store._id]} />}
                 </CardContent>
             </Card>
             }

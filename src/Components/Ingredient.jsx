@@ -16,6 +16,7 @@ export default function Ingredient ({ stocks }) {
                 '50001': 'Ingrediente especial',
             };
 
+    // console.log('stocks', stocks)
     return (
         <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '17px'}}>Ingredientes</ListSubheader>}>
             {stocks?.map((ing, index) => 
