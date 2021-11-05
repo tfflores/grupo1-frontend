@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import ItemCard from './ItemCard';
 import { makeStyles } from '@mui/styles';
 
@@ -17,18 +14,28 @@ const useStyles = makeStyles({
 export default function Requests() {
     const classes = useStyles();
     const [storage, setStorage] = useState([]);
-    // const [general, setGeneral] = useState();
-    // const [dispatch, setDispatch] = useState();
-    // const [reception, setReception] = useState();
-    // const [kitchen, setKitchen] = useState();
+    // '6167752d51533a0004922313': {_id: '10', total: 48}
+    const [stockStore, setStockStore] = useState({});
     const [error, setError] = useState('');
 
     useEffect(() => {
         fetch('https://doblequeso1.ing.puc.cl/api/almacenes/')
             .then(res => res.json())
             .then(data => {
-                console.log('data: ', data)
-                setStorage(data) 
+                setStorage(data)
+
+            })
+            .catch(err => {
+                setError({ errorMessage: err.toString() });
+            });
+    });
+
+    useEffect(() => {
+        const idStorage = '6167752d51533a0004922312';
+        fetch(`https://doblequeso1.ing.puc.cl/api/skusWithStock/${idStorage}`)
+            .then(res => res.json())
+            .then(data => {
+                setStockStore(stockStore => ({...stockStore, [idStorage]: data}));
             })
             .catch(err => {
                 setError({ errorMessage: err.toString() });
@@ -38,10 +45,9 @@ export default function Requests() {
 
     return (
         <div className={classes.root} id="tocados-to-sell">
-            <ItemCard name={'Bodega General'} info={'Información de bodega'} />
-            <ItemCard name={'Bodega de Despacho'} info={'Información de bodega'} />
-            <ItemCard name={'Bodega de Recepción'} info={'Información de bodega'} />
-            <ItemCard name={'Cocina'} info={'Información de bodega'} />
+            {storage?.map((store) =>
+                <ItemCard store={store} stock_store={stockStore}/>
+            )}
         </div>
     )
 }
