@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 export default function Requests() {
     const classes = useStyles();
     const [storage, setStorage] = useState([]);
-    // '6167752d51533a0004922313': {_id: '10', total: 48}
     const [stockStore, setStockStore] = useState({});
     const [error, setError] = useState('');
 

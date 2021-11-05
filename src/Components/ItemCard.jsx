@@ -20,21 +20,6 @@ export default function ItemCard({ store, stock_store }) {
     const classes = useStyles();
     const stockStore = stock_store;
 
-    // useEffect(() => {
-    //     const idStorage = '4af9f23d8ead0e1d32000000';
-    //     const idProduct = '10';
-    //     fetch(`http://localhost:9000/stock/${idStorage}/${idProduct}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setStock(data) 
-    //         })
-    //         .catch(err => {
-    //             setError({ errorMessage: err.toString() });
-    //             console.log(error);
-    //         });
-    // })
-
-
     return (
         <>
         {store.cocina && 
