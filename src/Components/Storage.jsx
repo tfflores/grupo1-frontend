@@ -28,9 +28,8 @@ export default function Requests() {
             })
             .catch(err => {
                 setError({ errorMessage: err.toString() });
-                console.log(error);
             });
-    }, []);
+    });
 
     return (
         <div>

@@ -11,7 +11,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 const useStyles = makeStyles({
     card: {
-        minHeight: '60vh',
+        minHeight: '80vh',
     }
 });
 
@@ -22,31 +22,21 @@ export default function ItemCard({ store }) {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`);
-                const data = await res.json();
+        setInterval(() => {
+            fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
+            .then(res => res.json())
+            .then(data => {
+                setLoading(true);
                 setStockStore(stockStore => ({...stockStore, [store._id]: data}));
-            } catch (err) {
+            })
+            .catch(err => {
                 setError({ errorMessage: err.toString() });
-                console.log(error);
-            }
-            setLoading(false);
-            };
-            fetchData();
+                if (error.errorMessage !== 'TypeError: Failed to fetch') {
+                    console.log(error);
+                }
             });
-            // fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
-            // .then(res => res.json())
-            // .then(data => {
-            //     setLoading(true);
-            //     setStockStore(stockStore => ({...stockStore, [store._id]: data}));
-            // })
-            // .catch(err => {
-            //     setError({ errorMessage: err.toString() });
-            //     console.log(error);
-            // });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, 1000);
+    });
 
     return (
         <>
@@ -64,7 +54,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading ? <Ingredient stocks={stockStore[store._id]} usedSpace={store.usedSpace}/> : <div>Loading...</div>}
                 </CardContent>
             </Card>
             }
@@ -82,7 +72,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading ? <Ingredient stocks={stockStore[store._id]} usedSpace={store.usedSpace}/> : <div>Loading...</div>}
                 </CardContent>
             </Card>
             }
@@ -100,7 +90,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading ? <Ingredient stocks={stockStore[store._id]} usedSpace={store.usedSpace} /> : <div>Loading...</div>}
                 </CardContent>
             </Card>
             }
@@ -118,7 +108,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading ? <Ingredient stocks={stockStore[store._id]} usedSpace={store.usedSpace}/> : <div>Loading...</div>}
                 </CardContent>
             </Card>
             }

@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 
-export default function Ingredient ({ stocks }) {
+export default function Ingredient ({ stocks, usedSpace }) {
     const skus = {'5': 'Harina', 
                 '10': 'Sal', 
                 '15': 'Levadura fresca', 
@@ -27,7 +27,7 @@ export default function Ingredient ({ stocks }) {
                         </ListItem>
                     )
                     :
-                    <div>Loading...</div>
+                    [ usedSpace > 0 && <div>Loading...</div>]                
                 }
             </List>
         </div>
