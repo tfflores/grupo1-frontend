@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Ingredient from './Ingredient';
+import axios from 'axios';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -15,38 +16,26 @@ const useStyles = makeStyles({
     }
 });
 
-export default function ItemCard({ store }) {
+const API_URL = process.env.REACT_APP_API_URL;
+
+
+export default function ItemCard({ store, num }) {
     const classes = useStyles();
     const [stockStore, setStockStore] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`);
-                const data = await res.json();
-                setStockStore(stockStore => ({...stockStore, [store._id]: data}));
-            } catch (err) {
-                setError({ errorMessage: err.toString() });
-                console.log(error);
-            }
-            setLoading(false);
-            };
-            fetchData();
-            });
-            // fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
-            // .then(res => res.json())
-            // .then(data => {
-            //     setLoading(true);
-            //     setStockStore(stockStore => ({...stockStore, [store._id]: data}));
-            // })
-            // .catch(err => {
-            //     setError({ errorMessage: err.toString() });
-            //     console.log(error);
-            // });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        axios.get(`${API_URL}skus/${store._id}`)
+        .then((response) => {
+          setLoading(true);
+          setStockStore(response.data);
+        })
+        .catch(err => {
+          setError({ errorMessage: err.toString() });
+          console.log(error);
+        });
+    }, [num]);
 
     return (
         <>
@@ -64,7 +53,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }
@@ -82,7 +71,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }
@@ -100,7 +89,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }
@@ -118,7 +107,7 @@ export default function ItemCard({ store }) {
                             <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
                         </ListItem>
                     </List>
-                    {loading && <Ingredient stocks={stockStore[store._id]} />}
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }

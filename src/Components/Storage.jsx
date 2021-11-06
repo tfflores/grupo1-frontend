@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemCard from './ItemCard';
 import { makeStyles } from '@mui/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles({
     root: {
@@ -10,37 +11,47 @@ const useStyles = makeStyles({
     }
 });
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 export default function Requests() {
-    const classes = useStyles();
-    // [{"_id": "4af9f23d8ead0e1d32000000", "usedSpace": 100,"totalSpace": "10000", "recepcion": false, "despacho": false, "pulmon": false, "cocina": false, "grupo": 1}, {}]
-    const [storage, setStorage] = useState([]);
-    // '6167752d51533a0004922313': {_id: '10', total: 48}
-    const [error, setError] = useState('');
+  const classes = useStyles();
+  const [storage, setStorage] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [num, setNum] = useState(0);
 
-    useEffect(() => {
-        fetch('https://doblequeso1.ing.puc.cl/api/almacenes/')
-            .then(res => res.json())
-            .then(data => {
-                setStorage(data);
-            })
-            .catch(err => {
-                setError({ errorMessage: err.toString() });
-                console.log(error);
-            });
-    }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNum(num => num + 1);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
-    return (
-        <div>
-        {   storage?.length > 0 ? 
-            <div className={classes.root} id="tocados-to-sell">
-                {storage?.map((store, index) =>
-                    <ItemCard key={index} store={store}/>
-                )}
-            </div>
-            :
-            <div>Loading...</div>
-        }
+  useEffect(() => {
+    axios
+    .get(`${API_URL}almacenes/`)
+    .then((response) => {
+      setLoading(true);
+      setStorage(response.data);
+    })
+    .catch(err => {
+      setError({ errorMessage: err.toString() });
+      console.log(error);
+    });
+  }, [num]);
+
+  return (
+    <div>
+      { storage?.length > 0 ? 
+        <div className={classes.root} id="tocados-to-sell">
+            {storage?.map((store, index) =>
+                <ItemCard key={index} store={store} num={num}/>
+            )}
         </div>
-    )
-}
+        :
+        <div>Loading...</div>
+      }
+    </div>
+  );
+};
