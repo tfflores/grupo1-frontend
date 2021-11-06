@@ -23,8 +23,8 @@ export default function Requests() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setNum(num => num + 1);
-    }, 10000);
+      setNum(num => num + 6);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -40,6 +40,7 @@ export default function Requests() {
       console.log(error);
     });
   }, [num]);
+
 
   return (
     <div>
