@@ -17,13 +17,11 @@ export default function Requests() {
     const [storage, setStorage] = useState([]);
     // '6167752d51533a0004922313': {_id: '10', total: 48}
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         fetch('https://doblequeso1.ing.puc.cl/api/almacenes/')
             .then(res => res.json())
             .then(data => {
-                setLoading(true);
                 setStorage(data);
             })
             .catch(err => {
