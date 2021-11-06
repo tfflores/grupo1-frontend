@@ -18,12 +18,18 @@ export default function Ingredient ({ stocks }) {
 
     // console.log('stocks', stocks)
     return (
-        <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '17px'}}>Ingredientes</ListSubheader>}>
-            {stocks?.map((ing, index) => 
-                <ListItem key={index}>
-                    <ListItemText primary={`${skus[ing._id]}: ${ing.total}`}/>
-                </ListItem>
-            )}
-        </List>
+        <div>
+            <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '17px'}}>Ingredientes</ListSubheader>}>
+                { stocks?.length > 0 ? 
+                    stocks?.map((ing, index) => 
+                        <ListItem key={index}>
+                            <ListItemText primary={`${skus[ing._id]}: ${ing.total}`}/>
+                        </ListItem>
+                    )
+                    :
+                    <div>Loading...</div>
+                }
+            </List>
+        </div>
     )
 }

@@ -30,16 +30,18 @@ export default function Requests() {
                 setError({ errorMessage: err.toString() });
                 console.log(error);
             });
-    });
+    }, []);
 
     return (
         <div>
-        {   loading && 
+        {   storage?.length > 0 ? 
             <div className={classes.root} id="tocados-to-sell">
                 {storage?.map((store, index) =>
                     <ItemCard key={index} store={store}/>
                 )}
             </div>
+            :
+            <div>Loading...</div>
         }
         </div>
     )
