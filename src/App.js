@@ -1,4 +1,5 @@
 import Storage from './Components/Storage';
+import './index.css';
 
 // Material UI
 import Box from '@mui/material/Box';
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
     backgroundColor: '#e64e43',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: '40px',
+    fontSize: '5vh',
     alignItems: 'center',
     justifyContent: 'center',
     height: '60px',

@@ -29,12 +29,13 @@ export default function ItemCard({ store, num }) {
         axios.get(`${API_URL}skus/${store._id}`)
         .then((response) => {
           setLoading(true);
-          setStockStore(response.data);
+          setStockStore(stockStore => ({...stockStore, [store._id]: response.data}));
         })
         .catch(err => {
           setError({ errorMessage: err.toString() });
           console.log(error);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [num]);
 
     return (

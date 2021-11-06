@@ -43,7 +43,7 @@ export default function Ingredient ({ stocks, usedSpace }) {
                         </ListItem>
                     )
                     :
-                    [ usedSpace > 0 && <div>Loading...</div>]                
+                    [ usedSpace > 0 && <div key={'loading'}>Loading...</div>]                
                 }
             </List>
         </div>

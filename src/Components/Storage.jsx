@@ -18,7 +18,6 @@ export default function Requests() {
   const classes = useStyles();
   const [storage, setStorage] = useState([]);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const [num, setNum] = useState(0);
 
   useEffect(() => {
@@ -32,13 +31,13 @@ export default function Requests() {
     axios
     .get(`${API_URL}almacenes/`)
     .then((response) => {
-      setLoading(true);
       setStorage(response.data);
     })
     .catch(err => {
       setError({ errorMessage: err.toString() });
       console.log(error);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [num]);
 
 
