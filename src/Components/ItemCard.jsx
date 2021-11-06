@@ -11,7 +11,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 const useStyles = makeStyles({
     card: {
-        minHeight: '70vh',
+        minHeight: '80vh',
     }
 });
 
