@@ -11,7 +11,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 const useStyles = makeStyles({
     card: {
-        minHeight: '80vh',
+        minHeight: '70vh',
     }
 });
 
@@ -22,8 +22,7 @@ export default function ItemCard({ store }) {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        setInterval(() => {
-            fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
+        fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
             .then(res => res.json())
             .then(data => {
                 setLoading(true);
@@ -35,7 +34,6 @@ export default function ItemCard({ store }) {
                     console.log(error);
                 }
             });
-        }, 1000);
     });
 
     return (

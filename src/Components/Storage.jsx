@@ -33,7 +33,8 @@ export default function Requests() {
 
     return (
         <div>
-        {   storage?.length > 0 ? 
+        {console.log('storage', storage)}
+        { storage?.length > 0 ? 
             <div className={classes.root} id="tocados-to-sell">
                 {storage?.map((store, index) =>
                     <ItemCard key={index} store={store}/>

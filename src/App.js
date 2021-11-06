@@ -1,15 +1,14 @@
 import Storage from './Components/Storage';
-import Pizza from './Components/Pizza';
 
 // Material UI
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-      pizza: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+      root: {
+        backgroundImage: `url(${process.env.PUBLIC_URL + '/images/fond.jpg'})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
     }
 });
 
@@ -18,14 +17,11 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className="App">
+    <div>
       <header className="App-header">
       </header>
       <Box sx={{ flexGrow: 1 }}>
         <Storage/>
-        <div className={classes.pizza}>
-          <Pizza/>
-          </div>
         </Box>
     </div>
   );
