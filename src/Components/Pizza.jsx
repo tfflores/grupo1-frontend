@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React from React;
-
-export default function Pizza () {
-    return (
-        <div>Pizza</div>
-    )
-=======
 import React from 'react';
 
 import Card from '@mui/material/Card';
@@ -22,5 +14,4 @@ export default function Pizza () {
             </CardContent>
         </Card>
     )
->>>>>>> 134479cca715a6821e556ba4a78fca0e7fcdfbd0
 }
