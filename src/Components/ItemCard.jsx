@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Ingredient from './Ingredient';
+import axios from 'axios';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -12,88 +12,102 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 const useStyles = makeStyles({
     card: {
-        minHeight: '35vh',
+        minHeight: '60vh',
     }
 });
 
-export default function ItemCard({ store, stock_store }) {
+const API_URL = process.env.REACT_APP_API_URL;
+
+
+export default function ItemCard({ store, num }) {
     const classes = useStyles();
-    const stockStore = stock_store;
+    const [stockStore, setStockStore] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    // useEffect(() => {
-    //     const idStorage = '4af9f23d8ead0e1d32000000';
-    //     const idProduct = '10';
-    //     fetch(`http://localhost:9000/stock/${idStorage}/${idProduct}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setStock(data) 
-    //         })
-    //         .catch(err => {
-    //             setError({ errorMessage: err.toString() });
-    //             console.log(error);
-    //         });
-    // })
-
+    useEffect(() => {
+        axios.get(`${API_URL}skus/${store._id}`)
+        .then((response) => {
+          setLoading(true);
+          setStockStore(response.data);
+        })
+        .catch(err => {
+          setError({ errorMessage: err.toString() });
+          console.log(error);
+        });
+    }, [num]);
 
     return (
         <>
         {store.cocina && 
             <Card className={classes.card} sx={{ width: '40%', margin: '20px' }}>
                 <CardContent>
-                    <Typography variant="h6">Cocina</Typography>
-                    <Typography variant="body2">
-                        id:  {store._id}
-                        <br/>
-                        Espacio usado: {store.usedSpace}
-                        <br/>
-                        Espacio Total: {store.totalSpace}
-                    </Typography>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '20px', color: 'black'}}>Cocina</ListSubheader>}>
+                        <ListItem>
+                            <ListItemText primary={`ID: ${store._id}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio usado: ${store.usedSpace}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
+                        </ListItem>
+                    </List>
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }
             {store.despacho && 
             <Card className={classes.card} sx={{ width: '40%', margin: '20px' }}>
                 <CardContent>
-                    <Typography variant="h6">Bodega de Despacho</Typography>
-                    <Typography variant="body2">
-                        id:  {store._id}
-                        <br/>
-                        Espacio usado: {store.usedSpace}
-                        <br/>
-                        Espacio Total: {store.totalSpace}
-                    </Typography>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '20px', color: 'black'}}>Bodega de Despacho</ListSubheader>}>
+                        <ListItem>
+                            <ListItemText primary={`ID: ${store._id}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio usado: ${store.usedSpace}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
+                        </ListItem>
+                    </List>
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }
             {store.pulmon && 
             <Card className={classes.card} sx={{ width: '40%', margin: '20px' }}>
                 <CardContent>
-                    <Typography variant="h6">Bodega General</Typography>
-                    <Typography variant="body2">
-                        id:  {store._id}
-                        <br/>
-                        Espacio usado: {store.usedSpace}
-                        <br/>
-                        Espacio Total: {store.totalSpace}
-                    </Typography>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '20px', color: 'black'}}>Bodega General</ListSubheader>}>
+                        <ListItem>
+                            <ListItemText primary={`ID: ${store._id}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio usado: ${store.usedSpace}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
+                        </ListItem>
+                    </List>
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }
             {store.recepcion && 
             <Card className={classes.card} sx={{ width: '40%', margin: '20px' }}>
                 <CardContent>
-                    <Typography variant="h6">Bodega de Recepción</Typography>
-                    <Typography variant="body2">
-                        id:  {store._id}
-                        <br/>
-                        Espacio usado: {store.usedSpace}
-                        <br/>
-                        Espacio Total: {store.totalSpace}
-                    </Typography>
-                    <Ingredient stocks={stockStore[store._id]} />
+                    <List subheader={<ListSubheader sx={{fontWeight: 'Bold', fontSize: '20px', color: 'black'}}>Bodega de Recepción</ListSubheader>}>
+                        <ListItem>
+                            <ListItemText primary={`ID: ${store._id}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio usado: ${store.usedSpace}`}/>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={`Espacio Total: ${store.totalSpace}`}/>
+                        </ListItem>
+                    </List>
+                    {loading && <Ingredient stocks={stockStore} />}
                 </CardContent>
             </Card>
             }

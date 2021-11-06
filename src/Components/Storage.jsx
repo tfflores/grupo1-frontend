@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemCard from './ItemCard';
 import { makeStyles } from '@mui/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles({
     root: {
@@ -10,44 +11,48 @@ const useStyles = makeStyles({
     }
 });
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 export default function Requests() {
-    const classes = useStyles();
-    const [storage, setStorage] = useState([]);
-    // '6167752d51533a0004922313': {_id: '10', total: 48}
-    const [stockStore, setStockStore] = useState({});
-    const [error, setError] = useState('');
+  const classes = useStyles();
+  const [storage, setStorage] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [num, setNum] = useState(0);
 
-    useEffect(() => {
-        fetch('https://doblequeso1.ing.puc.cl/api/almacenes/')
-            .then(res => res.json())
-            .then(data => {
-                setStorage(data)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNum(num => num + 6);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-            })
-            .catch(err => {
-                setError({ errorMessage: err.toString() });
-            });
+  useEffect(() => {
+    axios
+    .get(`${API_URL}almacenes/`)
+    .then((response) => {
+      setLoading(true);
+      setStorage(response.data);
+    })
+    .catch(err => {
+      setError({ errorMessage: err.toString() });
+      console.log(error);
     });
+  }, [num]);
 
-    useEffect(() => {
-        const idStorage = '6167752d51533a0004922312';
-        fetch(`https://doblequeso1.ing.puc.cl/api/skusWithStock/${idStorage}`)
-            .then(res => res.json())
-            .then(data => {
-                setStockStore(stockStore => ({...stockStore, [idStorage]: data}));
-            })
-            .catch(err => {
-                setError({ errorMessage: err.toString() });
-                console.log(error);
-            });
-    });
 
-    return (
+  return (
+    <div>
+      { storage?.length > 0 ? 
         <div className={classes.root} id="tocados-to-sell">
-            {storage?.map((store) =>
-                <ItemCard store={store} stock_store={stockStore}/>
+            {storage?.map((store, index) =>
+                <ItemCard key={index} store={store} num={num}/>
             )}
         </div>
-    )
-}
+        :
+        <div>Loading...</div>
+      }
+    </div>
+  );
+};
