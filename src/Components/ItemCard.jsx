@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Ingredient from './Ingredient';
+import axios from 'axios';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -15,26 +16,26 @@ const useStyles = makeStyles({
     }
 });
 
-export default function ItemCard({ store }) {
+const API_URL = process.env.REACT_APP_API_URL;
+
+
+export default function ItemCard({ store, num }) {
     const classes = useStyles();
     const [stockStore, setStockStore] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        fetch(`https://doblequeso1.ing.puc.cl/api/skus/${store._id}`)
-            .then(res => res.json())
-            .then(data => {
-                setLoading(true);
-                setStockStore(stockStore => ({...stockStore, [store._id]: data}));
-            })
-            .catch(err => {
-                setError({ errorMessage: err.toString() });
-                if (error.errorMessage !== 'TypeError: Failed to fetch') {
-                    console.log(error);
-                }
-            });
-    });
+        axios.get(`${API_URL}skus/${store._id}`)
+        .then((response) => {
+          setLoading(true);
+          setStockStore(response.data);
+        })
+        .catch(err => {
+          setError({ errorMessage: err.toString() });
+          console.log(error);
+        });
+    }, [num]);
 
     return (
         <>
