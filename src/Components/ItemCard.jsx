@@ -26,6 +26,7 @@ export default function ItemCard({ store, num }) {
     const [error, setError] = useState('');
 
     useEffect(() => {
+        {console.log('store: ', store)}
         axios.get(`${API_URL}skus/${store._id}`)
         .then((response) => {
           setLoading(true);
