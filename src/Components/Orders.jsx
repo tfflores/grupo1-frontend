@@ -38,18 +38,18 @@ export default function Orders() {
           }
         >
           <ListItem>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: 12 }}
+              primary={`Ordenes de compra pendientes: 0`}
+            />
+          </ListItem>
+          <ListItem>
             {loading && (
               <ListItemText
                 primaryTypographyProps={{ fontSize: 12 }}
-                primary={`Ordenes de compra pendientes: ${orders}`}
+                primary={`Ordenes de compra aceptadas:${orders}`}
               />
             )}
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primaryTypographyProps={{ fontSize: 12 }}
-              primary="Ordenes de compra aceptadas:"
-            />
           </ListItem>
           <ListItem>
             <ListItemText
