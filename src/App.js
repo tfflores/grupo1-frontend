@@ -33,8 +33,9 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   logoPizza: {
-    marginLeft: "40px",
+    marginLeft: "3vw",
     width: "4vw",
+    height: "4vw",
   },
 });
 
