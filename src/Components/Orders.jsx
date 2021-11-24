@@ -1,5 +1,5 @@
-// import axios from "axios";
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 import Card from "@mui/material/Card";
 import { CardContent } from "@mui/material";
@@ -8,23 +8,24 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Orders() {
-  // const [orders, setOrders] = useState({});
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState('');
+  const [orders, setOrders] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [, setError] = useState("");
 
-  // useEffect(() => {
-  //     axios.get(`${API_URL}`)
-  //     .then((response) => {
-  //         setLoading(true);
-  //         setOrders(response)
-  //     })
-  //     .catch((err) => {
-  //         setError({ errorMessage: err.toString() });
-  //     })
-  // })
+  useEffect(() => {
+    axios
+      .get(`${API_URL}orders`)
+      .then((response) => {
+        setLoading(true);
+        setOrders(response);
+      })
+      .catch((err) => {
+        setError({ errorMessage: err.toString() });
+      });
+  });
 
   return (
     <Card sx={{ width: "97,5%", margin: "20px", height: "190px" }}>
@@ -37,10 +38,12 @@ export default function Orders() {
           }
         >
           <ListItem>
-            <ListItemText
-              primaryTypographyProps={{ fontSize: 12 }}
-              primary="Ordenes de compra pendientes:"
-            />
+            {loading && (
+              <ListItemText
+                primaryTypographyProps={{ fontSize: 12 }}
+                primary={`Ordenes de compra pendientes: ${orders}`}
+              />
+            )}
           </ListItem>
           <ListItem>
             <ListItemText

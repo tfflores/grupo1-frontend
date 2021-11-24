@@ -52,7 +52,7 @@ export default function Ingredient({ stocks, usedSpace }) {
       <List
         key={"stocks"}
         sx={{
-          overflow: "scroll",
+          overflow: "auto",
           position: "relative",
           maxHeight: 280,
           scrollbarColor: "red yellow",
