@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     backgroundColor: "#e64e43",
     color: "white",
     fontWeight: "bold",
-    fontSize: "5vh",
+    fontSize: "3vw",
     alignItems: "center",
     justifyContent: "center",
     height: "60px",

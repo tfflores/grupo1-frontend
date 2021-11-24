@@ -51,7 +51,13 @@ export default function Ingredient({ stocks, usedSpace }) {
     <div>
       <List
         key={"stocks"}
-        sx={{ overflow: "auto", position: "relative", maxHeight: 280 }}
+        sx={{
+          overflow: "scroll",
+          position: "relative",
+          maxHeight: 280,
+          scrollbarColor: "red yellow",
+          bgcolor: "#F8F8F8",
+        }}
         subheader={
           <ListSubheader sx={{ fontWeight: "Bold", fontSize: "17px" }}>
             Ingredientes
