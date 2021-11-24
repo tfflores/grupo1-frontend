@@ -4,25 +4,18 @@ import axios from "axios";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { makeStyles } from "@mui/styles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 
-const useStyles = makeStyles({
-  card: {
-    minHeight: "80vh",
-  },
-});
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function ItemCard({ store, num }) {
-  const classes = useStyles();
   const [stockStore, setStockStore] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [storeName, setStoreName] = useState("");
 
   useEffect(() => {
     axios
@@ -41,173 +34,61 @@ export default function ItemCard({ store, num }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [num]);
 
+  useEffect(() => {
+    if (store.cocina) {
+      setStoreName("Cocina");
+    } else if (store.recepcion) {
+      setStoreName("Bodega de Recepción");
+    } else if (store.despacho) {
+      setStoreName("Bodega de Despacho");
+    } else if (store.pulmon) {
+      setStoreName("Bodega de Pulmon");
+    } else {
+      setStoreName("Bodega de General");
+    }
+  }, [store.cocina, store.recepcion, store.despacho, store.pulmon]);
   return (
-    <>
-      {store.cocina && (
-        <Card className={classes.card} sx={{ width: "40%", margin: "20px" }}>
-          <CardContent>
-            <List
-              subheader={
-                <ListSubheader
-                  sx={{ fontWeight: "Bold", fontSize: "20px", color: "black" }}
-                >
-                  Cocina
-                </ListSubheader>
-              }
+    <Card
+      sx={{ width: "40%", margin: "20px", minHeight: "55vh", height: "55vh" }}
+    >
+      <CardContent>
+        <List
+          subheader={
+            <ListSubheader
+              sx={{ fontWeight: "Bold", fontSize: "20px", color: "black" }}
             >
-              <ListItem>
-                <ListItemText primary={`ID: ${store._id}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio usado: ${store.usedSpace}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio Total: ${store.totalSpace}`} />
-              </ListItem>
-            </List>
-            {loading ? (
-              <Ingredient
-                stocks={stockStore[store._id]}
-                usedSpace={store.usedSpace}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-      {store.despacho && (
-        <Card className={classes.card} sx={{ width: "40%", margin: "20px" }}>
-          <CardContent>
-            <List
-              subheader={
-                <ListSubheader
-                  sx={{ fontWeight: "Bold", fontSize: "20px", color: "black" }}
-                >
-                  Bodega de Despacho
-                </ListSubheader>
-              }
-            >
-              <ListItem>
-                <ListItemText primary={`ID: ${store._id}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio usado: ${store.usedSpace}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio Total: ${store.totalSpace}`} />
-              </ListItem>
-            </List>
-            {loading ? (
-              <Ingredient
-                stocks={stockStore[store._id]}
-                usedSpace={store.usedSpace}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-      {store.pulmon && (
-        <Card className={classes.card} sx={{ width: "40%", margin: "20px" }}>
-          <CardContent>
-            <List
-              subheader={
-                <ListSubheader
-                  sx={{ fontWeight: "Bold", fontSize: "20px", color: "black" }}
-                >
-                  Bodega Pulmon
-                </ListSubheader>
-              }
-            >
-              <ListItem>
-                <ListItemText primary={`ID: ${store._id}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio usado: ${store.usedSpace}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio Total: ${store.totalSpace}`} />
-              </ListItem>
-            </List>
-            {loading ? (
-              <Ingredient
-                stocks={stockStore[store._id]}
-                usedSpace={store.usedSpace}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-      {store.recepcion && (
-        <Card className={classes.card} sx={{ width: "40%", margin: "20px" }}>
-          <CardContent>
-            <List
-              subheader={
-                <ListSubheader
-                  sx={{ fontWeight: "Bold", fontSize: "20px", color: "black" }}
-                >
-                  Bodega de Recepción
-                </ListSubheader>
-              }
-            >
-              <ListItem>
-                <ListItemText primary={`ID: ${store._id}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio usado: ${store.usedSpace}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio Total: ${store.totalSpace}`} />
-              </ListItem>
-            </List>
-            {loading ? (
-              <Ingredient
-                stocks={stockStore[store._id]}
-                usedSpace={store.usedSpace}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-      {!store.recepcion && !store.cocina && !store.pulmon && !store.despacho && (
-        <Card className={classes.card} sx={{ width: "40%", margin: "20px" }}>
-          <CardContent>
-            <List
-              subheader={
-                <ListSubheader
-                  sx={{ fontWeight: "Bold", fontSize: "20px", color: "black" }}
-                >
-                  Bodega de General
-                </ListSubheader>
-              }
-            >
-              <ListItem>
-                <ListItemText primary={`ID: ${store._id}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio usado: ${store.usedSpace}`} />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary={`Espacio Total: ${store.totalSpace}`} />
-              </ListItem>
-            </List>
-            {loading ? (
-              <Ingredient
-                stocks={stockStore[store._id]}
-                usedSpace={store.usedSpace}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-    </>
+              {storeName}
+            </ListSubheader>
+          }
+        >
+          <ListItem>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: 12 }}
+              primary={`ID: ${store._id}`}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: 12 }}
+              primary={`Espacio usado: ${store.usedSpace}`}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: 12 }}
+              primary={`Espacio Total: ${store.totalSpace}`}
+            />
+          </ListItem>
+        </List>
+        {loading ? (
+          <Ingredient
+            stocks={stockStore[store._id]}
+            usedSpace={store.usedSpace}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

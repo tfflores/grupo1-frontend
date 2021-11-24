@@ -30,7 +30,6 @@ export default function Requests() {
     axios
       .get(`${API_URL}almacenes/`)
       .then((response) => {
-        console.log(response);
         setStorage(response.data);
       })
       .catch((err) => {

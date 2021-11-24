@@ -47,10 +47,11 @@ export default function Ingredient({ stocks, usedSpace }) {
     50017: "Ingrediente especial G17",
   };
 
-  // console.log('stocks', stocks)
   return (
     <div>
       <List
+        key={"stocks"}
+        sx={{ overflow: "auto", position: "relative", maxHeight: 280 }}
         subheader={
           <ListSubheader sx={{ fontWeight: "Bold", fontSize: "17px" }}>
             Ingredientes
@@ -60,7 +61,10 @@ export default function Ingredient({ stocks, usedSpace }) {
         {stocks?.length > 0
           ? stocks?.map((ing, index) => (
               <ListItem key={index}>
-                <ListItemText primary={`${skus[ing._id]}: ${ing.total}`} />
+                <ListItemText
+                  primaryTypographyProps={{ fontSize: 12 }}
+                  primary={`${skus[ing._id]}: ${ing.total}`}
+                />
               </ListItem>
             ))
           : [usedSpace > 0 && <div key={"loading"}>Loading...</div>]}
