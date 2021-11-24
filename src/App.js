@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
   logoPizza: {
     marginLeft: "40px",
-    width: "60px",
+    width: "4vw",
   },
 });
 
