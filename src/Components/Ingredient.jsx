@@ -56,7 +56,6 @@ export default function Ingredient({ stocks, usedSpace }) {
           position: "relative",
           maxHeight: 280,
           scrollbarColor: "red yellow",
-          bgcolor: "#F8F8F8",
         }}
         subheader={
           <ListSubheader sx={{ fontWeight: "Bold", fontSize: "17px" }}>
