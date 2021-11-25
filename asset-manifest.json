@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/grupo1-frontend/static/css/main.4a4137e4.chunk.css",
-    "main.js": "/grupo1-frontend/static/js/main.9fc28065.chunk.js",
-    "main.js.map": "/grupo1-frontend/static/js/main.9fc28065.chunk.js.map",
+    "main.js": "/grupo1-frontend/static/js/main.d68d4b28.chunk.js",
+    "main.js.map": "/grupo1-frontend/static/js/main.d68d4b28.chunk.js.map",
     "runtime-main.js": "/grupo1-frontend/static/js/runtime-main.434633ff.js",
     "runtime-main.js.map": "/grupo1-frontend/static/js/runtime-main.434633ff.js.map",
-    "static/js/2.642a5976.chunk.js": "/grupo1-frontend/static/js/2.642a5976.chunk.js",
-    "static/js/2.642a5976.chunk.js.map": "/grupo1-frontend/static/js/2.642a5976.chunk.js.map",
+    "static/js/2.b9f43133.chunk.js": "/grupo1-frontend/static/js/2.b9f43133.chunk.js",
+    "static/js/2.b9f43133.chunk.js.map": "/grupo1-frontend/static/js/2.b9f43133.chunk.js.map",
     "static/js/3.7c3ff327.chunk.js": "/grupo1-frontend/static/js/3.7c3ff327.chunk.js",
     "static/js/3.7c3ff327.chunk.js.map": "/grupo1-frontend/static/js/3.7c3ff327.chunk.js.map",
     "index.html": "/grupo1-frontend/index.html",
     "static/css/main.4a4137e4.chunk.css.map": "/grupo1-frontend/static/css/main.4a4137e4.chunk.css.map",
-    "static/js/2.642a5976.chunk.js.LICENSE.txt": "/grupo1-frontend/static/js/2.642a5976.chunk.js.LICENSE.txt"
+    "static/js/2.b9f43133.chunk.js.LICENSE.txt": "/grupo1-frontend/static/js/2.b9f43133.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.434633ff.js",
-    "static/js/2.642a5976.chunk.js",
+    "static/js/2.b9f43133.chunk.js",
     "static/css/main.4a4137e4.chunk.css",
-    "static/js/main.9fc28065.chunk.js"
+    "static/js/main.d68d4b28.chunk.js"
   ]
 }
