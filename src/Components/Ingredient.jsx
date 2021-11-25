@@ -48,32 +48,30 @@ export default function Ingredient({ stocks, usedSpace }) {
   };
 
   return (
-    <div>
-      <List
-        key={"stocks"}
-        sx={{
-          overflowX: "auto",
-          position: "relative",
-          height: "30vh",
-          maxHeight: "30vh",
-        }}
-        subheader={
-          <ListSubheader sx={{ fontWeight: "Bold", fontSize: "17px" }}>
-            Ingredientes
-          </ListSubheader>
-        }
-      >
-        {stocks?.length > 0
-          ? stocks?.map((ing, index) => (
-              <ListItem key={index}>
-                <ListItemText
-                  primaryTypographyProps={{ fontSize: 12 }}
-                  primary={`${skus[ing._id]}: ${ing.total}`}
-                />
-              </ListItem>
-            ))
-          : [usedSpace > 0 && <div key={"loading"}>Loading...</div>]}
-      </List>
-    </div>
+    <List
+      sx={{
+        overflowX: "auto",
+        position: "relative",
+        height: "16vw",
+        maxHeight: "16vw",
+      }}
+      key={"stocks"}
+      subheader={
+        <ListSubheader sx={{ fontWeight: "Bold", fontSize: "17px" }}>
+          Ingredientes
+        </ListSubheader>
+      }
+    >
+      {stocks?.length > 0
+        ? stocks?.map((ing, index) => (
+            <ListItem key={index}>
+              <ListItemText
+                primaryTypographyProps={{ fontSize: 12 }}
+                primary={`${skus[ing._id]}: ${ing.total}`}
+              />
+            </ListItem>
+          ))
+        : [usedSpace > 0 && <div key={"loading"}>Loading...</div>]}
+    </List>
   );
 }

@@ -24,28 +24,21 @@ export default function Orders() {
       .then((response) => {
         setLoading(true);
         setOrders(response.data);
+        response.data?.forEach((order) => {
+          if (order.estado === "aceptada") {
+            console.log("entre aceptada", aceptadas);
+            setAceptadas((aceptadas) => [...aceptadas, order]);
+          } else if (order.estado === "finalizada") {
+            setFinalizadas((finalizadas) => [...finalizadas, order]);
+          } else {
+            setPendientes((pendientes) => [...pendientes, order]);
+          }
+        });
       })
       .catch((err) => {
         setError({ errorMessage: err.toString() });
       });
-  }, [orders]);
-
-  // useEffect(() => {
-  //   console.log(orders);
-  //   setAceptadas([]);
-  //   setFinalizadas([]);
-  //   setPendientes([]);
-  //   orders?.forEach((order) => {
-  //     if (order.estado === "aceptada") {
-  //       setAceptadas([...aceptadas, order]);
-  //     } else if (order.estado === "finalizada") {
-  //       setFinalizadas([...finalizadas, order]);
-  //     } else {
-  //       setPendientes([...pendientes, order]);
-  //     }
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [orders]);
+  });
 
   return (
     <Card sx={{ width: "97,5%", margin: "20px", height: "190px" }}>
