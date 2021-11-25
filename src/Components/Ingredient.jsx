@@ -63,14 +63,16 @@ export default function Ingredient({ stocks, usedSpace }) {
       }
     >
       {stocks?.length > 0
-        ? stocks?.map((ing, index) => (
-            <ListItem key={index}>
-              <ListItemText
-                primaryTypographyProps={{ fontSize: 12 }}
-                primary={`${skus[ing._id]}: ${ing.total}`}
-              />
-            </ListItem>
-          ))
+        ? stocks
+            ?.sort((a, b) => (skus[a._id] > skus[b._id] ? 1 : -1))
+            .map((ing, index) => (
+              <ListItem key={index}>
+                <ListItemText
+                  primaryTypographyProps={{ fontSize: 12 }}
+                  primary={`${skus[ing._id]}: ${ing.total}`}
+                />
+              </ListItem>
+            ))
         : [usedSpace > 0 && <div key={"loading"}>Loading...</div>]}
     </List>
   );

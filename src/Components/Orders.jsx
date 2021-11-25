@@ -11,7 +11,6 @@ import ListSubheader from "@mui/material/ListSubheader";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Orders() {
-  const [orders, setOrders] = useState([]);
   const [pendientes, setPendientes] = useState([]);
   const [finalizadas, setFinalizadas] = useState([]);
   const [aceptadas, setAceptadas] = useState([]);
@@ -23,10 +22,8 @@ export default function Orders() {
       .get(`http://127.0.0.1:9000/api/orders`)
       .then((response) => {
         setLoading(true);
-        setOrders(response.data);
         response.data?.forEach((order) => {
           if (order.estado === "aceptada") {
-            console.log("entre aceptada", aceptadas);
             setAceptadas((aceptadas) => [...aceptadas, order]);
           } else if (order.estado === "finalizada") {
             setFinalizadas((finalizadas) => [...finalizadas, order]);
@@ -38,7 +35,7 @@ export default function Orders() {
       .catch((err) => {
         setError({ errorMessage: err.toString() });
       });
-  });
+  }, []);
 
   return (
     <Card sx={{ width: "97,5%", margin: "20px", height: "190px" }}>
