@@ -11,21 +11,41 @@ import ListSubheader from "@mui/material/ListSubheader";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Orders() {
-  const [orders, setOrders] = useState({});
+  const [orders, setOrders] = useState([]);
+  const [pendientes, setPendientes] = useState([]);
+  const [finalizadas, setFinalizadas] = useState([]);
+  const [aceptadas, setAceptadas] = useState([]);
   const [loading, setLoading] = useState(false);
   const [, setError] = useState("");
 
   useEffect(() => {
     axios
-      .get(`${API_URL}orders`)
+      .get(`http://127.0.0.1:9000/api/orders`)
       .then((response) => {
         setLoading(true);
-        setOrders(response);
+        setOrders(response.data);
       })
       .catch((err) => {
         setError({ errorMessage: err.toString() });
       });
-  });
+  }, [orders]);
+
+  // useEffect(() => {
+  //   console.log(orders);
+  //   setAceptadas([]);
+  //   setFinalizadas([]);
+  //   setPendientes([]);
+  //   orders?.forEach((order) => {
+  //     if (order.estado === "aceptada") {
+  //       setAceptadas([...aceptadas, order]);
+  //     } else if (order.estado === "finalizada") {
+  //       setFinalizadas([...finalizadas, order]);
+  //     } else {
+  //       setPendientes([...pendientes, order]);
+  //     }
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [orders]);
 
   return (
     <Card sx={{ width: "97,5%", margin: "20px", height: "190px" }}>
@@ -40,21 +60,21 @@ export default function Orders() {
           <ListItem>
             <ListItemText
               primaryTypographyProps={{ fontSize: 12 }}
-              primary={`Ordenes de compra pendientes: 0`}
+              primary={`Ordenes de compra pendientes: ${pendientes.length}`}
             />
           </ListItem>
           <ListItem>
             {loading && (
               <ListItemText
                 primaryTypographyProps={{ fontSize: 12 }}
-                primary={`Ordenes de compra aceptadas:${orders}`}
+                primary={`Ordenes de compra aceptadas:${aceptadas.length}`}
               />
             )}
           </ListItem>
           <ListItem>
             <ListItemText
               primaryTypographyProps={{ fontSize: 12 }}
-              primary="Ordenes de compra finalizadas:"
+              primary={`Ordenes de compra finalizadas:${finalizadas.length}`}
             />
           </ListItem>
         </List>

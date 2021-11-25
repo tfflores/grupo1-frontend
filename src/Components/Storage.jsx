@@ -42,7 +42,7 @@ export default function Requests() {
   return (
     <div>
       {storage?.length > 0 ? (
-        <div className={classes.root} id="tocados-to-sell">
+        <div className={classes.root} id="items-card">
           {storage?.map((store, index) => (
             <ItemCard key={index} store={store} num={num} />
           ))}

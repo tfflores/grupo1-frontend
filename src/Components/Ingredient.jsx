@@ -52,9 +52,10 @@ export default function Ingredient({ stocks, usedSpace }) {
       <List
         key={"stocks"}
         sx={{
-          overflow: "auto",
+          overflowX: "auto",
           position: "relative",
-          maxHeight: 280,
+          height: "30vh",
+          maxHeight: "30vh",
         }}
         subheader={
           <ListSubheader sx={{ fontWeight: "Bold", fontSize: "17px" }}>
