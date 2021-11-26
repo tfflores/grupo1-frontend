@@ -19,12 +19,12 @@ export default function Orders() {
   const [pendientes, setPendientes] = useState([]);
   const [finalizadas, setFinalizadas] = useState([]);
   const [aceptadas, setAceptadas] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [, setError] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:9000/api/orders`)
+      .get(`${API_URL}orders`)
       .then((response) => {
         setLoading(true);
         response.data?.forEach((order) => {
