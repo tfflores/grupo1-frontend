@@ -25,7 +25,7 @@ export default function Ingredient({ stocks, usedSpace }) {
     5001: "Pizza pepperoni mediana",
     5005: "Pizzas doble pepperoni familiar",
     5006: "Pizzas doble pepperoni mediana",
-    5010: "Pizzas aceituna famiiar",
+    5010: "Pizzas aceituna familiar",
     5011: "Pizza aceituna mediana",
     5020: "Pizzas Hawaiana familiar",
     50001: "Ingrediente especial G1",

@@ -13,7 +13,7 @@ export default function Order({ name, length, ordenes }) {
     5001: "Pizza pepperoni mediana",
     5005: "Pizza doble pepperoni familiar",
     5006: "Pizza doble pepperoni mediana",
-    5010: "Pizza aceituna famiiar",
+    5010: "Pizza aceituna familiar",
     5011: "Pizza aceituna mediana",
     5020: "Pizza Hawaiana familiar",
   };
