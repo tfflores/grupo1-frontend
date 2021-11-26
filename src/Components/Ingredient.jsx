@@ -52,8 +52,8 @@ export default function Ingredient({ stocks, usedSpace }) {
       sx={{
         overflowX: "auto",
         position: "relative",
-        height: "16vw",
-        maxHeight: "16vw",
+        height: "20vw",
+        maxHeight: "20vw",
       }}
       key={"stocks"}
       subheader={
@@ -66,7 +66,10 @@ export default function Ingredient({ stocks, usedSpace }) {
         ? stocks
             ?.sort((a, b) => (skus[a._id] > skus[b._id] ? 1 : -1))
             .map((ing, index) => (
-              <ListItem key={index}>
+              <ListItem
+                key={index}
+                sx={{ paddingTop: "0px", paddingBottom: "0px" }}
+              >
                 <ListItemText
                   primaryTypographyProps={{ fontSize: 12 }}
                   primary={`${skus[ing._id]}: ${ing.total}`}

@@ -61,19 +61,19 @@ export default function ItemCard({ store, num }) {
             </ListSubheader>
           }
         >
-          <ListItem>
+          <ListItem sx={{ paddingTop: "0px", paddingBottom: "0px" }}>
             <ListItemText
               primaryTypographyProps={{ fontSize: 12 }}
               primary={`ID: ${store._id}`}
             />
           </ListItem>
-          <ListItem>
+          <ListItem sx={{ paddingTop: "0px", paddingBottom: "0px" }}>
             <ListItemText
               primaryTypographyProps={{ fontSize: 12 }}
               primary={`Espacio usado: ${store.usedSpace}`}
             />
           </ListItem>
-          <ListItem>
+          <ListItem sx={{ paddingTop: "0px", paddingBottom: "0px" }}>
             <ListItemText
               primaryTypographyProps={{ fontSize: 12 }}
               primary={`Espacio Total: ${store.totalSpace}`}
