@@ -8,7 +8,7 @@ import Storage from "../Components/Storage";
 export default function RoutesPath() {
   return (
     <Routes>
-      <Route exact path="/" element={<Storage />} />
+      <Route path="/" element={<Storage />} />
       <Route path="/Orders" element={<Orders />} />
       <Route path="/Storage" element={<Storage />} />
     </Routes>
