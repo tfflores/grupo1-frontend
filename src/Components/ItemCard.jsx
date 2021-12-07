@@ -49,7 +49,13 @@ export default function ItemCard({ store, num }) {
   }, [store.cocina, store.recepcion, store.despacho, store.pulmon]);
   return (
     <Card
-      sx={{ width: "40%", margin: "20px", minHeight: "55vh", height: "55vh" }}
+      sx={{
+        width: "40%",
+        margin: "20px",
+        paddingTop: "20px",
+        minHeight: "80vh",
+        height: "80vh",
+      }}
     >
       <CardContent>
         <List
@@ -63,19 +69,19 @@ export default function ItemCard({ store, num }) {
         >
           <ListItem sx={{ paddingTop: "0px", paddingBottom: "0px" }}>
             <ListItemText
-              primaryTypographyProps={{ fontSize: 12 }}
+              primaryTypographyProps={{ fontSize: 13 }}
               primary={`ID: ${store._id}`}
             />
           </ListItem>
           <ListItem sx={{ paddingTop: "0px", paddingBottom: "0px" }}>
             <ListItemText
-              primaryTypographyProps={{ fontSize: 12 }}
+              primaryTypographyProps={{ fontSize: 13 }}
               primary={`Espacio usado: ${store.usedSpace}`}
             />
           </ListItem>
           <ListItem sx={{ paddingTop: "0px", paddingBottom: "0px" }}>
             <ListItemText
-              primaryTypographyProps={{ fontSize: 12 }}
+              primaryTypographyProps={{ fontSize: 13 }}
               primary={`Espacio Total: ${store.totalSpace}`}
             />
           </ListItem>

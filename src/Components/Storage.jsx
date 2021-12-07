@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
+import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 
@@ -40,7 +41,7 @@ export default function Requests() {
   }, [num]);
 
   return (
-    <div>
+    <Box sx={{ flexGrow: 1 }}>
       {storage?.length > 0 ? (
         <div className={classes.root} id="items-card">
           {storage?.map((store, index) => (
@@ -50,6 +51,6 @@ export default function Requests() {
       ) : (
         <div>Loading...</div>
       )}
-    </div>
+    </Box>
   );
 }

@@ -20,6 +20,7 @@ export default function Ingredient({ stocks, usedSpace }) {
     1001: "Masa para pizza precocida mediana",
     1070: "Aceituna laminada",
     1080: "Tomate picado",
+    1090: "Champiñón deshidratado",
     1100: "Piña picada",
     5000: "Pizza pepperoni familiar",
     5001: "Pizza pepperoni mediana",
@@ -28,6 +29,9 @@ export default function Ingredient({ stocks, usedSpace }) {
     5010: "Pizzas aceituna familiar",
     5011: "Pizza aceituna mediana",
     5020: "Pizzas Hawaiana familiar",
+    5021: "Pizzas Hawaiana mediana",
+    5030: "Pizza vegana familiar",
+    5031: "Pizza vegana mediana",
     50001: "Ingrediente especial G1",
     50002: "Ingrediente especial G2",
     50003: "Ingrediente especial G3",
@@ -52,8 +56,8 @@ export default function Ingredient({ stocks, usedSpace }) {
       sx={{
         overflowX: "auto",
         position: "relative",
-        height: "20vw",
-        maxHeight: "20vw",
+        height: "50vh",
+        maxHeight: "50vh",
       }}
       key={"stocks"}
       subheader={
