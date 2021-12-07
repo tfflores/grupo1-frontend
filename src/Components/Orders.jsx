@@ -5,6 +5,7 @@ import Order from "./Order";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const useStyles = makeStyles({
   root: {
@@ -136,7 +137,16 @@ export default function Orders() {
         Ordenes de canal TFP
       </Typography>
       {loading ? (
-        <CircularProgress />
+        <Box
+          className={classes.box}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height={"100%"}
+          width={"100%"}
+        >
+          <CircularProgress color="white" />
+        </Box>
       ) : (
         <div className={classes.root} id="items-card">
           <Order
@@ -161,7 +171,16 @@ export default function Orders() {
         Ordenes de otros grupo
       </Typography>
       {loading ? (
-        <CircularProgress />
+        <Box
+          className={classes.box}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height={"100%"}
+          width={"100%"}
+        >
+          <CircularProgress color="white" />
+        </Box>
       ) : (
         <div className={classes.root} id="items-card">
           <Order

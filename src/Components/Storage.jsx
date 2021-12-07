@@ -3,6 +3,7 @@ import ItemCard from "./ItemCard";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const useStyles = makeStyles({
   root: {
@@ -49,7 +50,16 @@ export default function Requests() {
           ))}
         </div>
       ) : (
-        <div>Loading...</div>
+        <Box
+          className={classes.box}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height={"100%"}
+          width={"100%"}
+        >
+          <CircularProgress color="white" />
+        </Box>
       )}
     </Box>
   );
