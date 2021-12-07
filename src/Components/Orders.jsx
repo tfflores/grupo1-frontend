@@ -91,6 +91,26 @@ export default function Orders() {
   const [loading, setLoading] = useState(false);
   const [, setError] = useState("");
 
+  function checktype(name, order) {
+    if (name === "TFP") {
+      if (order.estado === "aceptada") {
+        setAceptadasFTP((aceptadasFTP) => [...aceptadasFTP, order]);
+      } else if (order.estado === "finalizada") {
+        setFinalizadasFTP((finalizadasFTP) => [...finalizadasFTP, order]);
+      } else {
+        setRecibidasFTP((recibidasFTP) => [...recibidasFTP, order]);
+      }
+    } else {
+      if (order.estado === "aceptada") {
+        setAceptadas((aceptadas) => [...aceptadas, order]);
+      } else if (order.estado === "finalizada") {
+        setFinalizadas((finalizadas) => [...finalizadas, order]);
+      } else {
+        setRecibidas((recibidas) => [...recibidas, order]);
+      }
+    }
+  }
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -98,21 +118,9 @@ export default function Orders() {
       .then((response) => {
         response.data?.forEach((order) => {
           if (order.client in data_grupos_dev) {
-            if (order.estado === "aceptada") {
-              setAceptadasFTP((aceptadasFTP) => [...aceptadasFTP, order]);
-            } else if (order.estado === "finalizada") {
-              setFinalizadasFTP((finalizadasFTP) => [...finalizadasFTP, order]);
-            } else {
-              setRecibidasFTP((recibidasFTP) => [...recibidasFTP, order]);
-            }
+            checktype("TFP", order);
           } else {
-            if (order.estado === "aceptada") {
-              setAceptadas((aceptadas) => [...aceptadas, order]);
-            } else if (order.estado === "finalizada") {
-              setFinalizadas((finalizadas) => [...finalizadas, order]);
-            } else {
-              setRecibidas((recibidas) => [...recibidas, order]);
-            }
+            checktype("Groups", order);
           }
         });
         setLoading(false);
