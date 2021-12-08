@@ -11,6 +11,8 @@ export default function RoutesPath() {
       <Route exact path="/" element={<Storage />} />
       <Route path="/grupo1-frontend/" element={<Storage />} />
       <Route path={process.env.PUBLIC_URL + "/Orders"} element={<Orders />} />
+      <Route path="/Orders" element={<Orders />} />
+      <Route path="/grupo1-frontend/Orders" element={<Orders />} />
       <Route path={process.env.PUBLIC_URL + "/Storage"} element={<Storage />} />
     </Routes>
   );
