@@ -10,8 +10,8 @@ export default function RoutesPath() {
     <Routes>
       <Route exact path="/" element={<Storage />} />
       <Route path="/grupo1-frontend/" element={<Storage />} />
-      <Route path="/Orders" element={<Orders />} />
-      <Route path="/Storage" element={<Storage />} />
+      <Route path="/grupo1-frontend/Orders" element={<Orders />} />
+      <Route path="/grupo1-frontend/Storage" element={<Storage />} />
     </Routes>
   );
 }

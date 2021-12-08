@@ -86,12 +86,12 @@ export default function Sidebar() {
         </DrawerHeader>
         <Divider />
         <List>
-          <Link to="/Storage">
+          <Link to="/grupo1-frontend/Storage">
             <ListItem button key="ocupacion">
               <ListItemText primary="Ocupación de bodegas" />
             </ListItem>
           </Link>
-          <Link to="/Orders">
+          <Link to="/grupo1-frontend/Orders">
             <ListItem button key="ordenes">
               <ListItemText primary="Ordenes de compra" />
             </ListItem>
