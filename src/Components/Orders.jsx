@@ -124,7 +124,6 @@ export default function Orders() {
       .get(`${API_URL}orders`)
       .then((response) => {
         response.data?.forEach((order) => {
-          console.log(order.cliente, order);
           if (order.cliente in data_grupos_dev) {
             checktype("Groups", order);
           } else {
