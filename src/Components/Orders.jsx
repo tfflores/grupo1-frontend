@@ -168,7 +168,7 @@ export default function Orders() {
       )}
 
       <Typography variant="h4" sx={{ fontWeight: "bold", margin: "20px" }}>
-        Ordenes de otros grupo
+        Ordenes de otros grupos
       </Typography>
       {loading ? (
         <Box
