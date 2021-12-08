@@ -12,6 +12,7 @@ export default function RoutesPath() {
       <Route path="/grupo1-frontend/" element={<Storage />} />
       <Route path="/Orders" element={<Orders />} />
       <Route path="/Storage" element={<Storage />} />
+      <Route path="/grupo1-frontend/Storage" element={<Storage />} />
     </Routes>
   );
 }
