@@ -95,7 +95,7 @@ export default function Orders() {
   const [, setError] = useState("");
 
   function checktype(name, order) {
-    if (name === "TFP") {
+    if (name === "FTP") {
       if (order.estado === "aceptada") {
         setAceptadasFTP((aceptadasFTP) => [...aceptadasFTP, order]);
       } else if (order.estado === "finalizada") {
@@ -124,6 +124,7 @@ export default function Orders() {
       .get(`${API_URL}orders`)
       .then((response) => {
         response.data?.forEach((order) => {
+          console.log(order.cliente);
           if (order.cliente in data_grupos_dev) {
             checktype("Groups", order);
           } else {
