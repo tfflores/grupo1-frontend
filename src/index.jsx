@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <Router basename="/grupo1-frontend">
+  <Router>
     <App />
   </Router>,
   document.getElementById("root")
