@@ -102,7 +102,7 @@ export default function Orders() {
         setRecibidasFTP((recibidasFTP) => [...recibidasFTP, order]);
       }
     } else {
-      if (order.estado === "creada") {
+      if (order.estado === "aceptada") {
         setAceptadas((aceptadas) => [...aceptadas, order]);
       } else if (order.estado === "finalizada") {
         setFinalizadas((finalizadas) => [...finalizadas, order]);
