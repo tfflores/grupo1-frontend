@@ -96,6 +96,16 @@ export default function Sidebar() {
               <ListItemText primary="Ordenes de compra" />
             </ListItem>
           </Link>
+          <Link to="/Orders">
+            <ListItem button key="ordenes">
+              <ListItemText primary="Ordenes de compra2" />
+            </ListItem>
+          </Link>
+          <Link to="/grupo1-frontend/Orders">
+            <ListItem button key="ordenes">
+              <ListItemText primary="Ordenes de compra3" />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
     </Box>
