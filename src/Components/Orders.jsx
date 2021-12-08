@@ -119,7 +119,7 @@ export default function Orders() {
       .then((response) => {
         response.data?.forEach((order) => {
           if (order.client in data_grupos_dev) {
-            checktype("TFP", order);
+            checktype("FTP", order);
           } else {
             checktype("Groups", order);
           }
