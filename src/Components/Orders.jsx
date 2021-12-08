@@ -134,7 +134,7 @@ export default function Orders() {
   return (
     <>
       <Typography variant="h4" sx={{ fontWeight: "bold", margin: "20px" }}>
-        Ordenes de canal TFP
+        Ordenes de canal FTP
       </Typography>
       {loading ? (
         <Box
