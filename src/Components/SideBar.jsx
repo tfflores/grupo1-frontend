@@ -88,7 +88,7 @@ export default function Sidebar() {
         <List>
           <Link to="/grupo1-frontend/Storage">
             <ListItem button key="ocupacion">
-              <ListItemText primary="Ocupacion de bodegas" />
+              <ListItemText primary="Ocupación de bodegas" />
             </ListItem>
           </Link>
           <Link to="/grupo1-frontend/Orders">
