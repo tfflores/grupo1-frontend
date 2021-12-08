@@ -88,6 +88,8 @@ export default function Orders() {
   const [aceptadas, setAceptadas] = useState([]);
   const [recibidasFTP, setRecibidasFTP] = useState([]);
   const [finalizadasFTP, setFinalizadasFTP] = useState([]);
+  const [rechazadas, setRechazadas] = useState([]);
+  const [rechazadasFTP, setRechazadasFTP] = useState([]);
   const [aceptadasFTP, setAceptadasFTP] = useState([]);
   const [loading, setLoading] = useState(false);
   const [, setError] = useState("");
@@ -98,6 +100,8 @@ export default function Orders() {
         setAceptadasFTP((aceptadasFTP) => [...aceptadasFTP, order]);
       } else if (order.estado === "finalizada") {
         setFinalizadasFTP((finalizadasFTP) => [...finalizadasFTP, order]);
+      } else if (order.estado === "rechazada") {
+        setRechazadasFTP((rechazadasFTP) => [...rechazadasFTP, order]);
       } else {
         setRecibidasFTP((recibidasFTP) => [...recibidasFTP, order]);
       }
@@ -106,6 +110,8 @@ export default function Orders() {
         setAceptadas((aceptadas) => [...aceptadas, order]);
       } else if (order.estado === "finalizada") {
         setFinalizadas((finalizadas) => [...finalizadas, order]);
+      } else if (order.estado === "rechazada") {
+        setRechazadas((rechazadas) => [...rechazadas, order]);
       } else {
         setRecibidas((recibidas) => [...recibidas, order]);
       }
@@ -118,10 +124,11 @@ export default function Orders() {
       .get(`${API_URL}orders`)
       .then((response) => {
         response.data?.forEach((order) => {
-          if (order.client in data_grupos_dev) {
-            checktype("FTP", order);
-          } else {
+          console.log(order.cliente, order);
+          if (order.cliente in data_grupos_dev) {
             checktype("Groups", order);
+          } else {
+            checktype("FTP", order);
           }
         });
         setLoading(false);
@@ -151,18 +158,23 @@ export default function Orders() {
         <div className={classes.root} id="items-card">
           <Order
             name={"recibidas"}
-            length={recibidas.length}
-            ordenes={recibidas}
+            length={recibidasFTP.length}
+            ordenes={recibidasFTP}
           />
           <Order
             name={"aceptadas"}
-            length={aceptadas.length}
-            ordenes={aceptadas}
+            length={aceptadasFTP.length}
+            ordenes={aceptadasFTP}
+          />
+          <Order
+            name={"rechazadas"}
+            length={rechazadasFTP.length}
+            ordenes={rechazadasFTP}
           />
           <Order
             name={"finalizadas"}
-            length={finalizadas.length}
-            ordenes={finalizadas}
+            length={finalizadasFTP.length}
+            ordenes={finalizadasFTP}
           />
         </div>
       )}
@@ -185,18 +197,23 @@ export default function Orders() {
         <div className={classes.root} id="items-card">
           <Order
             name={"recibidas"}
-            length={recibidasFTP.length}
-            ordenes={recibidasFTP}
+            length={recibidas.length}
+            ordenes={recibidas}
           />
           <Order
             name={"aceptadas"}
-            length={aceptadasFTP.length}
-            ordenes={aceptadasFTP}
+            length={aceptadas.length}
+            ordenes={aceptadas}
+          />
+          <Order
+            name={"rechazadas"}
+            length={rechazadas.length}
+            ordenes={rechazadas}
           />
           <Order
             name={"finalizadas"}
-            length={finalizadasFTP.length}
-            ordenes={finalizadasFTP}
+            length={finalizadas.length}
+            ordenes={finalizadas}
           />
         </div>
       )}

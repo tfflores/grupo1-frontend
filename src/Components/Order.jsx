@@ -78,9 +78,9 @@ export default function Order({ name, length, ordenes }) {
             </ListSubheader>
           }
         >
-          {ordenes?.map((order) => (
+          {ordenes?.map((order, index) => (
             <ListItem
-              key={order.id}
+              key={index}
               sx={{ paddingTop: "0px", paddingBottom: "0px" }}
             >
               <ListItemText
