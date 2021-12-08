@@ -97,12 +97,12 @@ export default function Sidebar() {
             </ListItem>
           </Link>
           <Link to="/Orders">
-            <ListItem button key="ordenes">
+            <ListItem button key="ordenes1">
               <ListItemText primary="Ordenes de compra2" />
             </ListItem>
           </Link>
           <Link to="/grupo1-frontend/Orders">
-            <ListItem button key="ordenes">
+            <ListItem button key="ordenes2">
               <ListItemText primary="Ordenes de compra3" />
             </ListItem>
           </Link>
