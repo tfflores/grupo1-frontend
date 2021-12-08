@@ -87,7 +87,7 @@ export default function Order({ name, length, ordenes }) {
                 primaryTypographyProps={{ fontSize: 12 }}
                 primary={`ID: ${order.id}`}
                 secondaryTypographyProps={{ fontSize: 11 }}
-                secondary={`cliente: ${order.cliente}, pizza: ${
+                secondary={`cliente: ${order.cliente}, producto: ${
                   pizzas[order.sku]
                 }`}
               />
