@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Routes, Route } from "react-router-dom";
-import Order from "../Components/Order";
 
 import Orders from "../Components/Orders";
 import Storage from "../Components/Storage";
