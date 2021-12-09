@@ -81,6 +81,70 @@ const data_grupos_dev = {
   },
 };
 
+const data_grupos_prod = {
+  "61832ff3104b2400047de07a": {
+    id_recep: "618332b7736b2300048b2180",
+    url: "http://127.0.0.1:8000/api",
+  },
+  "61832ff3104b2400047de07b": {
+    id_recep: "618332b7736b2300048b2185",
+    url: "https://doblequeso2.ing.puc.cl",
+  },
+  "61832ff3104b2400047de07c": {
+    id_recep: "618332b7736b2300048b218a",
+    url: "https://doblequeso3.ing.puc.cl",
+  },
+  "61832ff3104b2400047de07d": {
+    id_recep: "618332b7736b2300048b218f",
+    url: "http://doblequeso4.ing.puc.cl",
+  },
+  "61832ff3104b2400047de07e": {
+    id_recep: "618332b7736b2300048b2194",
+    url: "https://doblequeso5.ing.puc.cl",
+  },
+  "61832ff3104b2400047de07f": {
+    id_recep: "618332b7736b2300048b2199",
+    url: "http://doblequeso6.ing.puc.cl",
+  },
+  "61832ff3104b2400047de080": {
+    id_recep: "618332b7736b2300048b219e",
+    url: "http://doblequeso7.ing.puc.cl",
+  },
+  "61832ff3104b2400047de081": {
+    id_recep: "618332b7736b2300048b21a3",
+    url: "https://doblequeso8.ing.puc.cl",
+  },
+  "61832ff3104b2400047de082": {
+    id_recep: "618332b7736b2300048b21a8",
+    url: "http://napolitana9.ing.puc.cl",
+  },
+  "61832ff3104b2400047de083": {
+    id_recep: "618332b7736b2300048b21ad",
+    url: "http://napolitana10.ing.puc.cl",
+  },
+  "61832ff3104b2400047de084": {
+    id_recep: "618332b7736b2300048b21b2",
+    url: "http://napolitana11.ing.puc.cl",
+  },
+  "61832ff3104b2400047de085": { id_recep: "618332b7736b2300048b21b7", url: "" },
+  "61832ff3104b2400047de086": {
+    id_recep: "618332b7736b2300048b21bc",
+    url: "http://napolitana13.ing.puc.cl/api",
+  },
+  "61832ff3104b2400047de087": {
+    id_recep: "618332b7736b2300048b21c1",
+    url: "http://napolitana14.ing.puc.cl",
+  },
+  "61832ff3104b2400047de088": {
+    id_recep: "618332b7736b2300048b21c6",
+    url: "http://napolitana15.ing.puc.cl",
+  },
+  "61832ff3104b2400047de089": {
+    id_recep: "618332b7736b2300048b21cb",
+    url: "http://napolitana16.ing.puc.cl",
+  },
+};
+
 export default function Orders() {
   const classes = useStyles();
   const [recibidas, setRecibidas] = useState([]);
@@ -124,7 +188,7 @@ export default function Orders() {
       .get(`${API_URL}orders`)
       .then((response) => {
         response.data?.forEach((order) => {
-          if (order.cliente in data_grupos_dev) {
+          if (order.cliente in data_grupos_prod) {
             checktype("Groups", order);
           } else {
             checktype("FTP", order);
